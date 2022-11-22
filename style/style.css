@@ -46,15 +46,18 @@
     font-size: 30px;
     
 }
-
 #button:hover {
-   transform: 1;
+    transform: scale(1.1);
+    border-color: silver;
+    box-shadow: 0 0 2rem silver;
    
 }
 
-#button1 {
+
+#lol {
     height: 260px;
     width: 100px;
+    background-color: rgb(178, 9, 9);
     border-radius: 10px;
     border: 2px solid black;
     position: relative;
@@ -65,8 +68,17 @@
     align-items: center;
    justify-items: center;
 }
-#button2 {
+#lol:hover {
+    transform: scale(1.1);
+    border-color: rgb(178, 9, 9);
+    box-shadow: 0 0 1rem rgb(178, 9, 9);
+    -webkit-transform: perspective(500px) rotateX(10deg);
+	-moz-transform: perspective(100px) rotateX(10deg);
+   
+}
+#lol1 {
     height: 260px;
+    background-color: rgb(9, 9, 162);
     width: 100px;
     border-radius: 10px;
     border: 2px solid black;
@@ -76,4 +88,13 @@
     font-size: 30px;
     align-items: center;
     justify-content: center;
+}
+
+#lol1:hover {
+    transform: scale(1.1);
+    border-color: rgb(9, 9, 162);
+    box-shadow: 0 0 1rem rgb(9, 9, 162);
+    -webkit-transform: perspective(900px) rotateX(10deg);
+	-moz-transform: perspective(100px) rotateX(10deg);
+   
 }
