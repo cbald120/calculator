@@ -4,32 +4,36 @@ let stor = '';
 const buttons = document.querySelectorAll('#button')
 result = "";
 
-
+ let toggle = false;
+ let stop = false; //this will dictate whether the screen will allow more characters
 
 buttons.forEach(button =>{
     button.addEventListener('click', function(){ 
-
-      document.getElementById('screen').innerHTML += button.value;
+      if (stor.length >= 40) {
+        return
+      }
+      if (toggle == true) { 
+        clearI() 
+    toggle = !toggle;}
+      if (stop == true) {
+        return
+      }
+    document.getElementById('screen').innerHTML += button.value;
     const currentHTML = document.getElementById('screen').innerHTML;
      stor = ' ' + currentHTML;
     document.getElementById('screen').innerHTML = stor;
-     })
-    })
+      }
+
+     )})
+    
 
 
-   /* function ple(value) { 
-      document.getElementById('screen').innerHTML += value;
-    const currentHTML = document.getElementById('screen').innerHTML;
-     stor = ' ' + currentHTML;
-    document.getElementById('screen').innerHTML = stor;
-    }
-console.log(stor)*/
+  //to do: need to ensure decimals are caculated. Also need to ensure that when user places new calculation after result it doesnt add to the result but starts new equation
 
-//two paths forward: I need to find a way to keep stored value being erased with new clear button press or I need to create a new function to host under onlick for each of the inputs
-
-//why is using the button redefining the value of stor? Everything works when done solely through the console.
+  //decimals: https://stackoverflow.com/questions/2876536/precise-financial-calculation-in-javascript-what-are-the-gotchas ----3
 
 function equal(stor) {
+  toggle = !toggle;
   var expressionIndex = Math.max(stor.lastIndexOf("-"), stor.lastIndexOf("+"));
   if (expressionIndex === -1) {
     expressionIndex = Math.max(stor.lastIndexOf("*"), stor.lastIndexOf("/"));
@@ -46,8 +50,8 @@ function equal(stor) {
     var rightVal = equal(stor.substring(expressionIndex + 1).trim());
     switch (stor[expressionIndex]) {
       case "+":
-        document.getElementById('screen').innerHTML = leftVal + rightVal;
-        return leftVal + rightVal;
+        document.getElementById('screen').innerHTML = (leftVal + rightVal).toFixed(2);
+        return (leftVal + rightVal).toFixed(2);
       case "-":
         document.getElementById('screen').innerHTML = leftVal - rightVal;
         return leftVal - rightVal;
