@@ -2,7 +2,6 @@
 let stor = '';
 
 const buttons = document.querySelectorAll('#button')
-result = "";
 
  let toggle = false;
  let stop = false; //this will dictate whether the screen will allow more characters
@@ -26,12 +25,6 @@ buttons.forEach(button =>{
 
      )})
     
-
-
-  //to do: need to ensure decimals are caculated. Also need to ensure that when user places new calculation after result it doesnt add to the result but starts new equation
-
-  //decimals: https://stackoverflow.com/questions/2876536/precise-financial-calculation-in-javascript-what-are-the-gotchas ----3
-
 function equal(stor) {
   toggle = !toggle;
   var expressionIndex = Math.max(stor.lastIndexOf("-"), stor.lastIndexOf("+"));
@@ -47,11 +40,13 @@ function equal(stor) {
     }
   } else {
     var leftVal = equal(stor.substring(0, expressionIndex).trim());
+    let leftVal1 = Number(leftVal);
     var rightVal = equal(stor.substring(expressionIndex + 1).trim());
+    let rightVal2 = Number(rightVal);
     switch (stor[expressionIndex]) {
       case "+":
-        document.getElementById('screen').innerHTML = (leftVal + rightVal).toFixed(2);
-        return (leftVal + rightVal).toFixed(2);
+        document.getElementById('screen').innerHTML = leftVal1 + rightVal2;//this creates the decimal positions but only adds zeroes. Completely ignores values in tenths place
+        return leftVal1 + rightVal2;
       case "-":
         document.getElementById('screen').innerHTML = leftVal - rightVal;
         return leftVal - rightVal;
